@@ -5,50 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¡Feliz Año Nuevo 2025!</title>
     <style>
-        /* Estilos generales */
+        /* Estilos globales */
         body {
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #001f3f, #0074D9);
-            color: #ffffff;
-            text-align: center;
-            overflow: hidden;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
         }
 
-        /* Contenedor principal */
-        .container {
-            position: relative;
-            height: 100vh;
+        h1, h2 {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* Sección inicial */
+        .hero {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: opacity 0.5s ease;
+            height: 100vh;
+            text-align: center;
+            background: linear-gradient(to bottom, #001f3f, #0074D9);
+            padding: 20px;
         }
 
-        h1 {
-            font-size: 4rem;
-            margin: 0;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+        .hero h1 {
+            font-size: 3rem;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
             animation: glow 2s infinite alternate;
         }
 
-        h2 {
+        .hero h2 {
             font-size: 1.5rem;
-            margin: 10px 0;
             color: #FFD700;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-            animation: fadeIn 3s ease-in-out;
+            margin-top: 10px;
         }
 
-        .button-container {
+        .hero .btn {
             margin-top: 20px;
-        }
-
-        .btn {
             padding: 10px 20px;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: bold;
             color: #0074D9;
             background-color: #FFD700;
@@ -58,62 +58,54 @@
             transition: background-color 0.3s ease;
         }
 
-        .btn:hover {
+        .hero .btn:hover {
             background-color: #FFC300;
         }
 
         /* Galería de imágenes */
         .gallery {
+            position: relative;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 2px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            padding: 20px;
             background: #000;
-            padding: 2px;
-            overflow: hidden;
-            transform: scale(0);
-            opacity: 0;
-            transition: transform 0.5s ease, opacity 0.5s ease;
-            z-index: 1000;
-        }
-
-        .gallery.active {
-            transform: scale(1);
-            opacity: 1;
         }
 
         .gallery img {
             width: 100%;
-            height: 100%;
+            height: 150px;
             object-fit: cover;
-            animation: imageFade 1.5s ease-in-out infinite alternate;
+            border-radius: 10px;
+            animation: fadeIn 2s ease-in-out;
+            transition: transform 0.5s ease;
         }
 
-        /* Texto centrado en la galería */
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Texto sobre las imágenes */
         .gallery-text {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            font-size: 3rem;
             color: #FFD700;
-            font-size: 2rem;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
-            z-index: 1100;
+            text-shadow: 0 0 20px rgba(255, 255, 0, 1);
             text-align: center;
+            font-weight: bold;
+            z-index: 10;
             animation: glow 2s infinite alternate;
         }
 
+        /* Footer */
         footer {
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
             text-align: center;
+            padding: 10px;
+            color: #ccc;
             font-size: 0.9rem;
-            color: #cccccc;
         }
 
         /* Animaciones */
@@ -135,63 +127,69 @@
             }
         }
 
-        @keyframes imageFade {
-            0% {
-                transform: scale(1.05);
+        /* Responsividad */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
             }
-            100% {
-                transform: scale(1);
+
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+
+            .gallery img {
+                height: 120px;
+            }
+
+            .gallery-text {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Contenedor principal -->
-    <div class="container" id="mainContent">
-        <h1>¡Feliz Año Nuevo 2025!</h1>
+    <!-- Sección inicial -->
+    <div class="hero">
+        <h1>¡Bienvenido al 2025!</h1>
         <h2>Que este año esté lleno de alegría, amor y éxito.</h2>
-        <div class="button-container">
-            <button class="btn" onclick="toggleGallery()">Descubre más sorpresas</button>
-        </div>
+        <button class="btn" onclick="showGallery()">Descubre más</button>
     </div>
 
     <!-- Galería de imágenes -->
-    <div class="gallery" id="gallery">
+    <div class="gallery" id="gallery" style="display: none;">
         <div class="gallery-text">¡Feliz Año Nuevo 2025!</div>
         <!-- Inserta aquí las 16 imágenes -->
-        <img src="imagenes/imagen1.jpg" alt="Imagen 1">
-        <img src="imagenes/imagen2.jpg" alt="Imagen 2">
-        <img src="imagenes/imagen3.jpg" alt="Imagen 3">
-        <img src="imagenes/imagen4.jpg" alt="Imagen 4">
-        <img src="imagenes/imagen5.jpg" alt="Imagen 5">
-        <img src="imagenes/imagen6.jpg" alt="Imagen 6">
-        <img src="imagenes/imagen7.jpg" alt="Imagen 7">
-        <img src="imagenes/imagen8.jpg" alt="Imagen 8">
-        <img src="imagenes/imagen9.jpg" alt="Imagen 9">
-        <img src="imagenes/imagen10.jpg" alt="Imagen 10">
-        <img src="imagenes/imagen11.jpg" alt="Imagen 11">
-        <img src="imagenes/imagen12.jpg" alt="Imagen 12">
-        <img src="imagenes/imagen13.jpg" alt="Imagen 13">
-        <img src="imagenes/imagen14.jpg" alt="Imagen 14">
-        <img src="imagenes/imagen15.jpg" alt="Imagen 15">
-        <img src="imagenes/imagen16.jpg" alt="Imagen 16">
+        <img src="imagen1.jpg" alt="Imagen 1">
+        <img src="imagen2.jpg" alt="Imagen 2">
+        <img src="imagen3.jpg" alt="Imagen 3">
+        <img src="imagen4.jpg" alt="Imagen 4">
+        <img src="imagen5.jpg" alt="Imagen 5">
+        <img src="imagen6.jpg" alt="Imagen 6">
+        <img src="imagen7.jpg" alt="Imagen 7">
+        <img src="imagen8.jpg" alt="Imagen 8">
+        <img src="imagen9.jpg" alt="Imagen 9">
+        <img src="imagen10.jpg" alt="Imagen 10">
+        <img src="imagen11.jpg" alt="Imagen 11">
+        <img src="imagen12.jpg" alt="Imagen 12">
+        <img src="imagen13.jpg" alt="Imagen 13">
+        <img src="imagen14.jpg" alt="Imagen 14">
+        <img src="imagen15.jpg" alt="Imagen 15">
+        <img src="imagen16.jpg" alt="Imagen 16">
     </div>
 
+    <!-- Footer -->
     <footer>
-        &copy; 2025 Todos los derechos reservados. Diseñado con ❤️ por TONY CALIXTO.
+        &copy; 2025 Todos los derechos reservados. Diseñado con ❤️ por un experto.
     </footer>
 
     <script>
-        function toggleGallery() {
-            const mainContent = document.getElementById('mainContent');
+        function showGallery() {
             const gallery = document.getElementById('gallery');
-
-            // Ocultar contenido principal y mostrar galería
-            mainContent.style.opacity = '0';
-            setTimeout(() => {
-                mainContent.style.display = 'none';
-                gallery.classList.add('active');
-            }, 500);
+            gallery.style.display = 'grid';
+            window.scrollTo({
+                top: gallery.offsetTop,
+                behavior: 'smooth'
+            });
         }
     </script>
 </body>
